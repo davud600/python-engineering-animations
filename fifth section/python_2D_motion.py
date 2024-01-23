@@ -35,10 +35,10 @@ elif type == 2:
 else:
     r = 200
     f = 1/5
-    a = 1000
-    b = 500
-    x = a+r*np.cos(2*np.pi*f*t)
-    y = b+r*np.sin(2*np.pi*f*t)
+    a = 1000+40*t
+    b = 500+40*t
+    x = (1000+40*t)+(r)*np.cos(2*np.pi*(f)*t)
+    y = (500+40*t)+(r)*np.sin(2*np.pi*(f)*t)
 
 
 ############### Animation ###############
@@ -81,18 +81,18 @@ def update_plot(num):
             arr_1, arr_2, \
             plane_trajectory, plane_1, plane_2, plane_3, plane_4,
     else:
-        arr_1 = ax1.arrow(t[num], a, 0, x[num] - a, length_includes_head=True,
+        arr_1 = ax1.arrow(t[num], a[num], 0, x[num] - a[num], length_includes_head=True,
                           head_width=0.1, head_length=40, color='r', linewidth=4)
-        arr_2 = ax2.arrow(t[num], b, 0, y[num] - b, length_includes_head=True,
+        arr_2 = ax2.arrow(t[num], b[num], 0, y[num] - b[num], length_includes_head=True,
                           head_width=0.1, head_length=40, color='b', linewidth=4)
-        displ_R = ax0.arrow(a, b, x[num] - a, y[num] - b, length_includes_head=True,
+        displ_R = ax0.arrow(a[num], b[num], x[num] - a[num], y[num] - b[num], length_includes_head=True,
                             head_width=10, head_length=20, color='m', linewidth=2)
-        displ_x = ax0.arrow(a, b, x[num] - a, 0, length_includes_head=True,
+        displ_x = ax0.arrow(a[num], b[num], x[num] - a[num], 0, length_includes_head=True,
                             head_width=40, head_length=80, color='r', linewidth=2)
-        displ_y = ax0.arrow(x[num], b, 0, y[num] - b, length_includes_head=True,
+        displ_y = ax0.arrow(x[num], b[num], 0, y[num] - b[num], length_includes_head=True,
                             head_width=40, head_length=80, color='b', linewidth=2)
 
-        return pos_x,
+        # return pos_x,
         return pos_x, pos_y, displ_R, displ_x, displ_y, arr_1, arr_2, \
             plane_trajectory, plane_1, plane_2, plane_3, plane_4,
 
@@ -130,7 +130,7 @@ elif type == 2:
                       str(x_i)+' + ' + str(a) + 't^2')
 else:
     pos_x, = ax1.plot([], [], '-b', linewidth=3,
-                      label='X = ' + str(a)+'*cos(2π' + str(f) + 't)')
+                      label='X = ' + str(0)+'*cos(2π' + str(f) + 't)')
 
 if type == 3:
     plt.xlim(t0, t_end)
@@ -152,8 +152,8 @@ elif type == 2:
     pos_y, = ax2.plot([], [], '-b', linewidth=3, label='Y = ' +
                       str(y_i) + ' + ' + str(A)+' * sin(2π'+str(f)+'t)')
 else:
-    pos_y, = ax1.plot([], [], '-b', linewidth=3,
-                      label='Y = ' + str(b)+'*sin(2π' + str(f) + 't)')
+    pos_y, = ax2.plot([], [], '-b', linewidth=3,
+                      label='Y = ' + str(0)+'*sin(2π' + str(f) + 't)')
 
 if type == 3:
     plt.xlim(t0, t_end)
