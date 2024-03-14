@@ -42,6 +42,7 @@ ax1 = fig.add_subplot(gs[:, 0:2], facecolor=(0.9, 0.9, 0.9))
 base_line, = ax1.plot([0, 0], [0, 0.4], 'k', linewidth=20)
 joint_1, = ax1.plot([], [], 'k', linewidth=4)
 joint_2, = ax1.plot([], [], 'b', linewidth=4)
+trajectory, = ax1.plot([], [], 'r', linewidth=2)
 ax1.spines['left'].set_position('center')
 ax1.spines['bottom'].set_position(('center'))
 ax1.xaxis.set_label_coords(0.5, -0.01)
@@ -52,6 +53,16 @@ plt.xticks(np.arange(-10, 10+1, 1))
 plt.yticks(np.arange(-10, 10+1, 1))
 plt.xlabel('meters [m]', fontsize=12)
 plt.ylabel('meters [m]', fontsize=12)
+plt.grid(True)
+
+# Subplot 2
+ax2 = fig.add_subplot(gs[0, 2], facecolor=(0.9, 0.9, 0.9))
+length_j1_funct, = ax2.plot([], [], 'b', linewidth=2)
+plt.xlim(t0, t_end)
+plt.ylim(0, r1[-1]+1)
+plt.xlabel('time [s]', fontsize=12)
+plt.ylabel('meters [m]', fontsize=12)
+plt.grid(True)
 
 
 # ani = animation.FuncAnimation(
